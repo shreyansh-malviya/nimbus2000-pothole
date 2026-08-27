@@ -1,4 +1,4 @@
-import type { DetectionsFile } from "../types";
+import type { Summary } from "@/lib/types";
 
 function Stat({
   label,
@@ -22,13 +22,11 @@ function Stat({
   );
 }
 
-export function StatStrip({ data }: { data: DetectionsFile }) {
-  const s = data.summary;
+export function StatStrip({ summary }: { summary: Summary }) {
+  const s = summary;
   const km = (s.distance_covered_m / 1000).toFixed(2);
   const density =
-    s.frames_with_potholes > 0
-      ? (s.potholes_total / s.frames_with_potholes).toFixed(2)
-      : "0";
+    s.frames_with_potholes > 0 ? (s.potholes_total / s.frames_with_potholes).toFixed(2) : "0";
   return (
     <div className="strip">
       <Stat label="Frames Scanned" value={s.frames_total} accent="plain" />
@@ -37,12 +35,7 @@ export function StatStrip({ data }: { data: DetectionsFile }) {
       <Stat label="Deep" value={s.severity_counts.deep} accent="orange" />
       <Stat label="Shallow" value={s.severity_counts.shallow} accent="amber" />
       <Stat label="Route Covered" value={km} unit="km" accent="plain" />
-      <Stat
-        label="Avg Confidence"
-        value={(s.avg_confidence * 100).toFixed(0)}
-        unit="%"
-        accent="plain"
-      />
+      <Stat label="Avg Confidence" value={(s.avg_confidence * 100).toFixed(0)} unit="%" accent="plain" />
       <Stat label="Density / Frame" value={density} accent="plain" />
     </div>
   );

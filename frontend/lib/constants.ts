@@ -19,3 +19,7 @@ export const SEVERITY_DESC: Record<Severity, string> = {
   deep: "Pronounced cavity — schedule repair",
   severe: "Hazardous depth/size — priority repair",
 };
+
+/** Backend base URL. Set NEXT_PUBLIC_API_URL in Vercel to your Render service. */
+export const API_URL =
+  (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000").replace(/\/$/, "");

@@ -1,4 +1,4 @@
-# Python
+# ---- Python ----
 __pycache__/
 *.py[cod]
 .venv/
@@ -6,39 +6,42 @@ venv/
 env/
 *.egg-info/
 
-# ML artifacts
+# ---- ML artifacts ----
 training/runs/
-training/*.cache
+*.cache
 dataset/downloads/
-dataset/pothole/
 dataset/raw/
+dataset/pothole/
+datasets/
+/runs/
+# Keep the shipped model weights (needed for the backend deploy):
 *.pt
 !models/best.pt
-datasets/
+*.onnx
+!models/best.onnx
 
-# Node / dashboard
+# ---- Node / Next.js ----
 node_modules/
-dashboard/dist/
-dashboard/.vite/
+frontend/.next/
+frontend/out/
+frontend/.vercel/
+.env
+.env.local
 
-# OS
+# ---- Raw drone capture (large; regenerate by unzipping Data/*.zip) ----
+Data/extracted/
+Data/sessions/
+Data/*.zip
+
+# ---- Playwright MCP scratch + screenshots ----
+.playwright-mcp/
+/next-*.png
+/dash-*.png
+
+# ---- OS ----
 .DS_Store
 Thumbs.db
 
-# Large source data (kept locally, not committed)
-Data/extracted/
-Data/*.zip
-
-# Env
-.env
-
-# Playwright MCP scratch
-.playwright-mcp/
-/dash-*.png
-
-# Generated inference outputs (regenerate via inference/detect.py)
-dashboard/public/frames/
-dashboard/public/data/detections.json
-
-# Stray ultralytics default run dir
-/runs/
+# TEMP (placeholder) — real baked data force-added at final commit
+frontend/public/sessions/
+frontend/public/data/sessions.json

@@ -1,7 +1,8 @@
+"use client";
 import { PieChart, Pie, Cell, ResponsiveContainer, Sector } from "recharts";
 import { useState } from "react";
-import type { Severity } from "../types";
-import { SEVERITY_COLOR, SEVERITY_LABEL, SEVERITY_DESC, SEVERITY_ORDER } from "../constants";
+import type { Severity } from "@/lib/types";
+import { SEVERITY_COLOR, SEVERITY_LABEL, SEVERITY_DESC, SEVERITY_ORDER } from "@/lib/constants";
 
 interface Props {
   counts: Record<Severity, number>;
@@ -96,6 +97,12 @@ export function SeverityPie({ counts, active, onPick }: Props) {
           </li>
         ))}
       </ul>
+
+      <p className="pie__note">
+        Severity is an ordinal estimate from a single camera — it fuses
+        perspective-corrected pothole size, interior-shadow depth cue, and model
+        confidence. Not a metric depth measurement.
+      </p>
     </div>
   );
 }

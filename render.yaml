@@ -1,0 +1,17 @@
+# One-click Render deploy for the Nimbus2000 detection backend.
+# The frontend (Vercel) uploads flight ZIPs directly to this service.
+services:
+  - type: web
+    name: nimbus2000-backend
+    runtime: python
+    plan: starter          # needs ~1GB RAM for torch + ultralytics
+    rootDir: .
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.10.0"
+      - key: ALLOWED_ORIGINS
+        value: "*"           # tighten to your Vercel URL in production
+      - key: MODEL_PATH
+        value: models/best.pt

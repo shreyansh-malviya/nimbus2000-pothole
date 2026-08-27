@@ -1,6 +1,8 @@
+"use client";
 import { useEffect, useMemo, useState } from "react";
-import type { Detection, Severity } from "../types";
-import { SEVERITY_COLOR, SEVERITY_LABEL, SEVERITY_ORDER } from "../constants";
+import type { Detection, Severity } from "@/lib/types";
+import { frameSrc } from "@/lib/types";
+import { SEVERITY_COLOR, SEVERITY_LABEL, SEVERITY_ORDER } from "@/lib/constants";
 
 interface Props {
   detections: Detection[];
@@ -20,7 +22,6 @@ export function FrameGallery({ detections, severityFilter, activeFrame, onSelect
     [detections, severityFilter]
   );
 
-  // When a frame is selected on the map, open its detail modal.
   useEffect(() => {
     if (activeFrame) {
       const d = detections.find((x) => x.frame_id === activeFrame);
@@ -29,11 +30,7 @@ export function FrameGallery({ detections, severityFilter, activeFrame, onSelect
   }, [activeFrame, detections]);
 
   if (filtered.length === 0) {
-    return (
-      <div className="empty">
-        No frames match this severity filter.
-      </div>
-    );
+    return <div className="empty">No frames match this severity filter.</div>;
   }
 
   return (
@@ -43,8 +40,7 @@ export function FrameGallery({ detections, severityFilter, activeFrame, onSelect
           const worst = d.potholes
             .map((p) => p.severity)
             .reduce(
-              (w, s) =>
-                SEVERITY_ORDER.indexOf(s) > SEVERITY_ORDER.indexOf(w) ? s : w,
+              (w, s) => (SEVERITY_ORDER.indexOf(s) > SEVERITY_ORDER.indexOf(w) ? s : w),
               "shallow" as Severity
             );
           return (
@@ -58,35 +54,32 @@ export function FrameGallery({ detections, severityFilter, activeFrame, onSelect
               style={{ ["--accent" as any]: SEVERITY_COLOR[worst] }}
             >
               <div className="card__imgwrap">
-                <img src={d.annotated} alt={d.frame_id} loading="lazy" />
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={frameSrc(d)} alt={d.frame_id} loading="lazy" />
                 <span className="card__count">{d.potholes.length}</span>
               </div>
               <div className="card__meta">
                 <span className="card__id">{d.frame_id.replace(".jpg", "")}</span>
                 <span className="card__gps">
-                  {d.gps.lat.toFixed(4)}, {d.gps.lon.toFixed(4)}
+                  {d.gps?.lat?.toFixed(4)}, {d.gps?.lon?.toFixed(4)}
                 </span>
               </div>
               <div className="card__sev">
-                {SEVERITY_ORDER.filter((s) => d.potholes.some((p) => p.severity === s)).map(
-                  (s) => (
-                    <span
-                      key={s}
-                      className="card__dot"
-                      style={{ background: SEVERITY_COLOR[s] }}
-                      title={SEVERITY_LABEL[s]}
-                    />
-                  )
-                )}
+                {SEVERITY_ORDER.filter((s) => d.potholes.some((p) => p.severity === s)).map((s) => (
+                  <span
+                    key={s}
+                    className="card__dot"
+                    style={{ background: SEVERITY_COLOR[s] }}
+                    title={SEVERITY_LABEL[s]}
+                  />
+                ))}
               </div>
             </button>
           );
         })}
       </div>
 
-      {modal && (
-        <FrameModal detection={modal} onClose={() => setModal(null)} />
-      )}
+      {modal && <FrameModal detection={modal} onClose={() => setModal(null)} />}
     </>
   );
 }
@@ -98,30 +91,38 @@ function FrameModal({ detection: d, onClose }: { detection: Detection; onClose: 
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const g = d.gps;
   return (
     <div className="modal" onClick={onClose}>
       <div className="modal__box" onClick={(e) => e.stopPropagation()}>
         <div className="modal__head">
           <div>
             <h3>{d.frame_id}</h3>
-            <span className="modal__ts">t+{d.timestamp} · {d.potholes.length} pothole(s)</span>
+            <span className="modal__ts">
+              t+{d.timestamp} · {d.potholes.length} pothole(s)
+            </span>
           </div>
-          <button className="modal__x" onClick={onClose}>✕</button>
+          <button className="modal__x" onClick={onClose}>
+            ✕
+          </button>
         </div>
 
         <div className="modal__body">
           <div className="modal__imgwrap">
-            <img src={d.annotated} alt={d.frame_id} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={frameSrc(d)} alt={d.frame_id} />
           </div>
 
           <div className="modal__side">
-            <div className="modal__gps">
-              <div className="kv"><span>Latitude</span><b>{d.gps.lat.toFixed(6)}</b></div>
-              <div className="kv"><span>Longitude</span><b>{d.gps.lon.toFixed(6)}</b></div>
-              <div className="kv"><span>Altitude</span><b>{d.gps.alt.toFixed(1)} m</b></div>
-              <div className="kv"><span>Heading</span><b>{d.gps.heading.toFixed(0)}°</b></div>
-              <div className="kv"><span>GPS accuracy</span><b>±{d.gps.accuracy.toFixed(1)} m</b></div>
-            </div>
+            {g && (
+              <div className="modal__gps">
+                <div className="kv"><span>Latitude</span><b>{g.lat.toFixed(6)}</b></div>
+                <div className="kv"><span>Longitude</span><b>{g.lon.toFixed(6)}</b></div>
+                <div className="kv"><span>Altitude</span><b>{g.alt.toFixed(1)} m</b></div>
+                <div className="kv"><span>Heading</span><b>{g.heading.toFixed(0)}°</b></div>
+                <div className="kv"><span>GPS accuracy</span><b>±{g.accuracy.toFixed(1)} m</b></div>
+              </div>
+            )}
 
             <div className="modal__list">
               {d.potholes.map((p, i) => (
@@ -139,14 +140,17 @@ function FrameModal({ detection: d, onClose }: { detection: Detection; onClose: 
                 </div>
               ))}
             </div>
-            <a
-              className="modal__maplink"
-              href={`https://www.openstreetmap.org/?mlat=${d.gps.lat}&mlon=${d.gps.lon}#map=19/${d.gps.lat}/${d.gps.lon}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open location in OpenStreetMap ↗
-            </a>
+
+            {g && (
+              <a
+                className="modal__maplink"
+                href={`https://www.openstreetmap.org/?mlat=${g.lat}&mlon=${g.lon}#map=19/${g.lat}/${g.lon}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open location in OpenStreetMap ↗
+              </a>
+            )}
           </div>
         </div>
       </div>

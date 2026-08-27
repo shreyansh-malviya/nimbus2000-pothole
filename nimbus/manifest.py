@@ -4,7 +4,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Dict, List
 
-from .config import MANIFEST_PATH
+from .config import LEGACY_FRAMES_DIR
 
 
 @dataclass
@@ -33,7 +33,7 @@ class FlightManifest:
         return {f.frame_id: f for f in self.frames}
 
 
-def load_manifest(path: Path = MANIFEST_PATH) -> FlightManifest:
+def load_manifest(path: Path = LEGACY_FRAMES_DIR / "manifest.json") -> FlightManifest:
     """Parse manifest.json into a typed FlightManifest."""
     raw = json.loads(Path(path).read_text(encoding="utf-8"))
     frames = [

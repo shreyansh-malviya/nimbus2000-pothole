@@ -4,9 +4,11 @@ from pathlib import Path
 # Project root = parent of this file's parent (nimbus/ -> project root)
 ROOT = Path(__file__).resolve().parent.parent
 
-# Raw drone capture provided by the user (Nimbus2000 flight FL-20260827-665)
-FRAMES_DIR = ROOT / "Data" / "extracted"
-MANIFEST_PATH = FRAMES_DIR / "manifest.json"
+# Multi-session drone captures. Each session folder holds frame_*.jpg + manifest.json.
+SESSIONS_DIR = ROOT / "Data" / "sessions"
+
+# Legacy single-session location (first provided flight), kept as a fallback.
+LEGACY_FRAMES_DIR = ROOT / "Data" / "extracted"
 
 # Labeled training dataset (downloaded/prepared separately)
 DATASET_DIR = ROOT / "dataset" / "pothole"
@@ -15,12 +17,12 @@ DATASET_YAML = DATASET_DIR / "data.yaml"
 # Trained model
 MODELS_DIR = ROOT / "models"
 BEST_MODEL = MODELS_DIR / "best.pt"
+ONNX_MODEL = MODELS_DIR / "best.onnx"
 
-# Inference outputs consumed by the dashboard (kept in dashboard/public so the
-# static site can load them without a bundler copy step).
-DASHBOARD_PUBLIC = ROOT / "dashboard" / "public"
-ANNOTATED_DIR = DASHBOARD_PUBLIC / "frames" / "annotated"
-DETECTIONS_JSON = DASHBOARD_PUBLIC / "data" / "detections.json"
+# Pre-baked static outputs consumed by the frontend (Next.js /public).
+FRONTEND_PUBLIC = ROOT / "frontend" / "public"
+SESSIONS_OUT = FRONTEND_PUBLIC / "sessions"          # per-session detections + frames
+SESSIONS_INDEX = FRONTEND_PUBLIC / "data" / "sessions.json"
 
 # Drone / flight identity
 DRONE_NAME = "Nimbus2000"
@@ -34,3 +36,14 @@ SEVERITY_BGR = {
     "deep": (30, 130, 240),      # orange
     "severe": (40, 40, 210),     # deep red-orange
 }
+
+
+def list_sessions():
+    """Return sorted list of (session_id, frames_dir, manifest_path) for every
+    session folder that contains a manifest.json."""
+    out = []
+    if SESSIONS_DIR.exists():
+        for d in sorted(SESSIONS_DIR.iterdir()):
+            if d.is_dir() and (d / "manifest.json").exists():
+                out.append((d.name, d, d / "manifest.json"))
+    return out
