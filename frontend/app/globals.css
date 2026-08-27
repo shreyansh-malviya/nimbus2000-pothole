@@ -620,3 +620,18 @@ a { color: var(--amber); text-decoration: none; }
   font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
   padding: 2px 7px; border-radius: 3px; background: var(--orange); color: #000; text-transform: uppercase;
 }
+
+/* Empty state (fresh deploy, no session loaded) */
+.landing {
+  margin-top: 40px;
+  padding: 60px 24px;
+  text-align: center;
+  background: var(--ink-850);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+}
+.landing__glyph { font-size: 46px; }
+.landing__title { font-family: var(--cond); font-size: 26px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--text-hi); }
+.landing__sub { max-width: 560px; color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+.landing .analyze-btn { margin-top: 8px; }

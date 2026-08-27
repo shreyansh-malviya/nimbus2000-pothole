@@ -3,8 +3,11 @@ fastapi>=0.110
 uvicorn[standard]>=0.29
 python-multipart>=0.0.9
 ultralytics==8.4.41
-# CPU torch — keep the image small (no CUDA). Render/Fly install from PyPI.
+# torch/torchvision are pre-installed from the CPU wheel index by the Dockerfile /
+# render.yaml build step (default PyPI wheels pull multi-GB CUDA builds). These
+# floors just document the requirement; the CPU install already satisfies them.
 torch>=2.2
+torchvision>=0.17
 opencv-python-headless>=4.9
 numpy>=1.26
 pillow>=10.0

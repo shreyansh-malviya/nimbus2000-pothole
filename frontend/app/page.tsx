@@ -21,24 +21,26 @@ export default function Page() {
   const [activeId, setActiveId] = useState<string | null>(null);
   const [liveData, setLiveData] = useState<SessionData | null>(null);
   const [cache] = useState<Map<string, SessionData>>(new Map());
-  const [error, setError] = useState<string | null>(null);
   const [severityFilter, setSeverityFilter] = useState<Severity | "all">("all");
   const [activeFrame, setActiveFrame] = useState<string | null>(null);
   const [uploadOpen, setUploadOpen] = useState(false);
 
-  // Load the sessions index, then the first session.
+  // Load the sessions index, then the first session. A missing/empty index is
+  // NOT an error — the app still works as an upload-and-detect tool (important
+  // for a fresh deploy before any sessions are baked).
+  const EMPTY_INDEX: SessionsIndex = {
+    drone: "Nimbus2000",
+    model: { weights: "best.pt", metrics: { mAP50: 0, mAP50_95: 0, precision: 0, recall: 0 } },
+    sessions: [],
+  };
   useEffect(() => {
     fetch("/data/sessions.json")
-      .then((r) => {
-        if (!r.ok) throw new Error(`sessions.json HTTP ${r.status}`);
-        return r.json();
-      })
+      .then((r) => (r.ok ? r.json() : EMPTY_INDEX))
       .then((idx: SessionsIndex) => {
         setIndex(idx);
-        if (idx.sessions.length) loadSession(idx.sessions[0].session_id, idx);
-        else setError("No pre-baked sessions. Run `python inference/bake.py`.");
+        if (idx.sessions?.length) loadSession(idx.sessions[0].session_id, idx);
       })
-      .catch((e) => setError(String(e)));
+      .catch(() => setIndex(EMPTY_INDEX));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -65,7 +67,7 @@ export default function Page() {
       setActiveId(id);
       setData(sd);
     } catch (e) {
-      setError(`Failed to load ${id}: ${e}`);
+      console.error(`Failed to load ${id}:`, e);
     }
   }
 
@@ -74,18 +76,7 @@ export default function Page() {
     [data]
   );
 
-  if (error && !data) {
-    return (
-      <div className="boot boot--err">
-        <div className="boot__code">DATA LOAD FAILED</div>
-        <p>{error}</p>
-        <p className="boot__hint">
-          Bake the provided sessions with <code>python inference/bake.py --enhance</code>.
-        </p>
-      </div>
-    );
-  }
-  if (!data || !index) {
+  if (!index) {
     return (
       <div className="boot">
         <div className="boot__spin" />
@@ -97,9 +88,9 @@ export default function Page() {
   return (
     <div className="app">
       <Header
-        sessionId={data.session_id}
-        weights={data.model.weights}
-        map50={data.model.metrics.mAP50}
+        sessionId={data ? data.session_id : "—"}
+        weights={data ? data.model.weights : index.model.weights}
+        map50={data ? data.model.metrics.mAP50 : index.model.metrics.mAP50}
       />
 
       {/* Session switcher + Analyze Footage */}
@@ -141,6 +132,24 @@ export default function Page() {
         </button>
       </div>
 
+      {!data ? (
+        <div className="landing">
+          <div className="landing__glyph">🛰️</div>
+          <h2 className="landing__title">No survey loaded yet</h2>
+          <p className="landing__sub">
+            Click <b>Analyze Footage</b> and drop a flight ZIP (frame_*.jpg +
+            manifest.json). It’s sent to the detection backend, which runs the
+            trained YOLOv8 model and returns geolocated, severity-graded potholes.
+          </p>
+          <button className="analyze-btn" onClick={() => setUploadOpen(true)}>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0d0d0f" strokeWidth="2.4">
+              <path d="M12 5v14M5 12h14" strokeLinecap="round" />
+            </svg>
+            Analyze Footage
+          </button>
+        </div>
+      ) : (
+      <>
       <StatStrip summary={data.summary} />
 
       <main className="grid">
@@ -209,6 +218,8 @@ export default function Page() {
           mAP@50 {(data.model.metrics.mAP50 * 100).toFixed(1)}% · generated {data.generated_at}
         </span>
       </footer>
+      </>
+      )}
 
       {uploadOpen && (
         <UploadPanel

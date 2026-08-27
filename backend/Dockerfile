@@ -8,7 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 COPY backend/requirements.txt backend/requirements.txt
-RUN pip install --no-cache-dir -r backend/requirements.txt
+# CPU-only torch first (avoids the multi-GB CUDA wheels), then the rest.
+RUN pip install --no-cache-dir torch==2.8.0 torchvision==0.23.0 \
+        --index-url https://download.pytorch.org/whl/cpu \
+ && pip install --no-cache-dir -r backend/requirements.txt
 
 # App code + shared engine + model weights
 COPY nimbus/ nimbus/

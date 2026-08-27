@@ -4,9 +4,16 @@ services:
   - type: web
     name: nimbus2000-backend
     runtime: python
-    plan: starter          # needs ~1GB RAM for torch + ultralytics
+    # torch + ultralytics + image processing peaks ~1.5GB — use a >=2GB plan.
+    # (Render "Standard". The 512MB free/starter tiers will OOM on inference.)
+    plan: standard
     rootDir: .
-    buildCommand: pip install -r backend/requirements.txt
+    # Install CPU-only torch/torchvision FIRST (the default PyPI wheels on Linux
+    # pull the multi-GB CUDA build and blow Render's disk/time limits).
+    buildCommand: >-
+      pip install --no-cache-dir torch==2.8.0 torchvision==0.23.0
+      --index-url https://download.pytorch.org/whl/cpu &&
+      pip install --no-cache-dir -r backend/requirements.txt
     startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
