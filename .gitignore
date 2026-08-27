@@ -37,6 +37,7 @@ Data/*.zip
 .playwright-mcp/
 /next-*.png
 /dash-*.png
+/onnx-*.png
 
 # ---- OS ----
 .DS_Store
