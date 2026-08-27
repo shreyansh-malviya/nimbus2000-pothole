@@ -70,15 +70,14 @@ def main() -> None:
             enhance=args.enhance, augment=args.augment,
             metrics=metrics, model_name=model_path.name,
             annotated_out_dir=out_dir / "annotated",
-            raw_out_dir=out_dir / "raw",
+            raw_out_dir=None,  # raw copies are unused by the frontend — don't bake them
             want_base64=False,
             limit=args.limit,
             progress=prog,
         )
-        # Rewrite annotated/raw as session-relative URLs the frontend can load.
+        # Rewrite annotated as a session-relative URL the frontend can load.
         for d in result["detections"]:
             d["annotated"] = f"sessions/{sid}/annotated/{d['frame_id']}"
-            d["raw"] = f"sessions/{sid}/raw/{d['frame_id']}"
 
         (out_dir).mkdir(parents=True, exist_ok=True)
         (out_dir / "detections.json").write_text(json.dumps(result, indent=2), encoding="utf-8")

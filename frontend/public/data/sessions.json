@@ -1,0 +1,52 @@
+{
+  "drone": "Nimbus2000",
+  "model": {
+    "weights": "best.pt",
+    "metrics": {
+      "mAP50": 0.0,
+      "mAP50_95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "sessions": [
+    {
+      "session_id": "FL-20260827-665",
+      "drone": "Nimbus2000",
+      "frames_total": 170,
+      "potholes_total": 30,
+      "severity_counts": {
+        "shallow": 9,
+        "deep": 14,
+        "severe": 7
+      },
+      "distance_covered_m": 831.9,
+      "area_bounds": {
+        "min_lat": 12.8403824,
+        "max_lat": 12.8434817,
+        "min_lon": 77.66011,
+        "max_lon": 77.6634339
+      },
+      "data": "sessions/FL-20260827-665/detections.json"
+    },
+    {
+      "session_id": "FL-20260827-863",
+      "drone": "Nimbus2000",
+      "frames_total": 103,
+      "potholes_total": 30,
+      "severity_counts": {
+        "shallow": 11,
+        "deep": 14,
+        "severe": 5
+      },
+      "distance_covered_m": 159.8,
+      "area_bounds": {
+        "min_lat": 12.8414206,
+        "max_lat": 12.8417657,
+        "min_lon": 77.6439689,
+        "max_lon": 77.6449767
+      },
+      "data": "sessions/FL-20260827-863/detections.json"
+    }
+  ]
+}

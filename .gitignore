@@ -42,6 +42,3 @@ Data/*.zip
 .DS_Store
 Thumbs.db
 
-# TEMP (placeholder) — real baked data force-added at final commit
-frontend/public/sessions/
-frontend/public/data/sessions.json

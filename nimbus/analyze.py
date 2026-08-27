@@ -41,8 +41,16 @@ def _haversine_m(lat1, lon1, lat2, lon2):
     return 2 * R * math.asin(math.sqrt(a))
 
 
-def _jpg_data_uri(img, quality=82):
-    ok, buf = cv2.imencode(".jpg", img, [cv2.IMWRITE_JPEG_QUALITY, quality])
+def _fit_width(img, max_w):
+    """Downscale to at most max_w px wide (keep aspect). No upscale."""
+    if not max_w or img.shape[1] <= max_w:
+        return img
+    scale = max_w / float(img.shape[1])
+    return cv2.resize(img, (max_w, int(round(img.shape[0] * scale))), interpolation=cv2.INTER_AREA)
+
+
+def _jpg_data_uri(img, quality=80, max_w=900):
+    ok, buf = cv2.imencode(".jpg", _fit_width(img, max_w), [cv2.IMWRITE_JPEG_QUALITY, quality])
     if not ok:
         return ""
     return "data:image/jpeg;base64," + base64.b64encode(buf.tobytes()).decode("ascii")
@@ -131,29 +139,31 @@ def analyze_session(
                 "darkness": sres.darkness,
             })
 
-        entry = {
-            "frame_id": frame_id,
-            "timestamp": t.video_timestamp if t else "",
-            "img_w": w, "img_h": h,
-            "gps": {
-                "lat": t.latitude, "lon": t.longitude, "alt": t.altitude_m,
-                "heading": t.heading_deg, "accuracy": t.accuracy_m,
-            } if t else {},
-            "potholes": potholes,
-        }
-
-        if annotated_out_dir:
-            cv2.imwrite(str(annotated_out_dir / frame_id), img, [cv2.IMWRITE_JPEG_QUALITY, 85])
-            entry["annotated"] = f"annotated/{frame_id}"
-        if raw_out_dir:
-            cv2.imwrite(str(raw_out_dir / frame_id), orig, [cv2.IMWRITE_JPEG_QUALITY, 80])
-            entry["raw"] = f"raw/{frame_id}"
-        if want_base64:
-            entry["annotated_uri"] = _jpg_data_uri(img)
-
-        # Only keep frames with potholes in the detections list (the full route
-        # is preserved separately in `path`).
+        # Only frames WITH potholes are displayed (gallery + map markers). Skip
+        # image output for empty frames entirely — the full route is preserved in
+        # `path`. Annotated frames are downscaled for the web to keep the static
+        # bundle / API response small.
         if potholes:
+            entry = {
+                "frame_id": frame_id,
+                "timestamp": t.video_timestamp if t else "",
+                "img_w": w, "img_h": h,
+                "gps": {
+                    "lat": t.latitude, "lon": t.longitude, "alt": t.altitude_m,
+                    "heading": t.heading_deg, "accuracy": t.accuracy_m,
+                } if t else {},
+                "potholes": potholes,
+            }
+            if annotated_out_dir:
+                cv2.imwrite(str(annotated_out_dir / frame_id), _fit_width(img, 900),
+                            [cv2.IMWRITE_JPEG_QUALITY, 82])
+                entry["annotated"] = f"annotated/{frame_id}"
+            if raw_out_dir:
+                cv2.imwrite(str(raw_out_dir / frame_id), _fit_width(orig, 900),
+                            [cv2.IMWRITE_JPEG_QUALITY, 80])
+                entry["raw"] = f"raw/{frame_id}"
+            if want_base64:
+                entry["annotated_uri"] = _jpg_data_uri(img)
             detections.append(entry)
 
         if progress:

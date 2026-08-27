@@ -1,0 +1,1495 @@
+{
+  "drone": "Nimbus2000",
+  "session_id": "FL-20260827-863",
+  "generated_at": "2026-08-27 21:36 UTC",
+  "model": {
+    "weights": "best.pt",
+    "imgsz": 640,
+    "conf": 0.35,
+    "metrics": {
+      "mAP50": 0.0,
+      "mAP50_95": 0.0,
+      "precision": 0.0,
+      "recall": 0.0
+    }
+  },
+  "summary": {
+    "frames_total": 103,
+    "frames_with_potholes": 27,
+    "potholes_total": 30,
+    "severity_counts": {
+      "shallow": 11,
+      "deep": 14,
+      "severe": 5
+    },
+    "distance_covered_m": 159.8,
+    "avg_confidence": 0.4855,
+    "area_bounds": {
+      "min_lat": 12.8414206,
+      "max_lat": 12.8417657,
+      "min_lon": 77.6439689,
+      "max_lon": 77.6449767
+    }
+  },
+  "path": [
+    {
+      "frame_id": "frame_0000.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0001.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0002.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0003.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0004.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0005.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0006.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0007.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0008.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0009.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0010.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0011.jpg",
+      "lat": 12.8417583,
+      "lon": 77.6449767
+    },
+    {
+      "frame_id": "frame_0012.jpg",
+      "lat": 12.8417533,
+      "lon": 77.644895
+    },
+    {
+      "frame_id": "frame_0013.jpg",
+      "lat": 12.8417533,
+      "lon": 77.644895
+    },
+    {
+      "frame_id": "frame_0014.jpg",
+      "lat": 12.8417533,
+      "lon": 77.644895
+    },
+    {
+      "frame_id": "frame_0015.jpg",
+      "lat": 12.8417533,
+      "lon": 77.644895
+    },
+    {
+      "frame_id": "frame_0016.jpg",
+      "lat": 12.8417499,
+      "lon": 77.6449631
+    },
+    {
+      "frame_id": "frame_0017.jpg",
+      "lat": 12.84175,
+      "lon": 77.6449589
+    },
+    {
+      "frame_id": "frame_0018.jpg",
+      "lat": 12.84175,
+      "lon": 77.6449589
+    },
+    {
+      "frame_id": "frame_0019.jpg",
+      "lat": 12.84175,
+      "lon": 77.6449589
+    },
+    {
+      "frame_id": "frame_0020.jpg",
+      "lat": 12.84175,
+      "lon": 77.6449589
+    },
+    {
+      "frame_id": "frame_0021.jpg",
+      "lat": 12.8417087,
+      "lon": 77.6447418
+    },
+    {
+      "frame_id": "frame_0022.jpg",
+      "lat": 12.8417012,
+      "lon": 77.6447291
+    },
+    {
+      "frame_id": "frame_0023.jpg",
+      "lat": 12.8417012,
+      "lon": 77.6447291
+    },
+    {
+      "frame_id": "frame_0024.jpg",
+      "lat": 12.8417043,
+      "lon": 77.6447341
+    },
+    {
+      "frame_id": "frame_0025.jpg",
+      "lat": 12.8417043,
+      "lon": 77.6447341
+    },
+    {
+      "frame_id": "frame_0026.jpg",
+      "lat": 12.8417043,
+      "lon": 77.6447341
+    },
+    {
+      "frame_id": "frame_0027.jpg",
+      "lat": 12.8417043,
+      "lon": 77.6447341
+    },
+    {
+      "frame_id": "frame_0028.jpg",
+      "lat": 12.8417043,
+      "lon": 77.6447341
+    },
+    {
+      "frame_id": "frame_0029.jpg",
+      "lat": 12.8416915,
+      "lon": 77.644659
+    },
+    {
+      "frame_id": "frame_0030.jpg",
+      "lat": 12.8416877,
+      "lon": 77.6446233
+    },
+    {
+      "frame_id": "frame_0031.jpg",
+      "lat": 12.8416868,
+      "lon": 77.6446111
+    },
+    {
+      "frame_id": "frame_0032.jpg",
+      "lat": 12.8416868,
+      "lon": 77.6446111
+    },
+    {
+      "frame_id": "frame_0033.jpg",
+      "lat": 12.8416876,
+      "lon": 77.6446137
+    },
+    {
+      "frame_id": "frame_0034.jpg",
+      "lat": 12.8416878,
+      "lon": 77.6446108
+    },
+    {
+      "frame_id": "frame_0035.jpg",
+      "lat": 12.8416838,
+      "lon": 77.6445961
+    },
+    {
+      "frame_id": "frame_0036.jpg",
+      "lat": 12.8416851,
+      "lon": 77.6445585
+    },
+    {
+      "frame_id": "frame_0037.jpg",
+      "lat": 12.8416839,
+      "lon": 77.644549
+    },
+    {
+      "frame_id": "frame_0038.jpg",
+      "lat": 12.8416814,
+      "lon": 77.6445376
+    },
+    {
+      "frame_id": "frame_0039.jpg",
+      "lat": 12.8416814,
+      "lon": 77.6445376
+    },
+    {
+      "frame_id": "frame_0040.jpg",
+      "lat": 12.8416913,
+      "lon": 77.6444903
+    },
+    {
+      "frame_id": "frame_0041.jpg",
+      "lat": 12.8416913,
+      "lon": 77.6444903
+    },
+    {
+      "frame_id": "frame_0042.jpg",
+      "lat": 12.8416913,
+      "lon": 77.6444903
+    },
+    {
+      "frame_id": "frame_0043.jpg",
+      "lat": 12.8417095,
+      "lon": 77.6444343
+    },
+    {
+      "frame_id": "frame_0044.jpg",
+      "lat": 12.8417084,
+      "lon": 77.6443987
+    },
+    {
+      "frame_id": "frame_0045.jpg",
+      "lat": 12.8417075,
+      "lon": 77.6443794
+    },
+    {
+      "frame_id": "frame_0046.jpg",
+      "lat": 12.8417073,
+      "lon": 77.6443629
+    },
+    {
+      "frame_id": "frame_0047.jpg",
+      "lat": 12.8417073,
+      "lon": 77.6443629
+    },
+    {
+      "frame_id": "frame_0048.jpg",
+      "lat": 12.8417104,
+      "lon": 77.644346
+    },
+    {
+      "frame_id": "frame_0049.jpg",
+      "lat": 12.8417269,
+      "lon": 77.6443387
+    },
+    {
+      "frame_id": "frame_0050.jpg",
+      "lat": 12.841737,
+      "lon": 77.6443369
+    },
+    {
+      "frame_id": "frame_0051.jpg",
+      "lat": 12.8417419,
+      "lon": 77.6443299
+    },
+    {
+      "frame_id": "frame_0052.jpg",
+      "lat": 12.8417448,
+      "lon": 77.6443253
+    },
+    {
+      "frame_id": "frame_0053.jpg",
+      "lat": 12.8417448,
+      "lon": 77.6443253
+    },
+    {
+      "frame_id": "frame_0054.jpg",
+      "lat": 12.8417457,
+      "lon": 77.6443185
+    },
+    {
+      "frame_id": "frame_0055.jpg",
+      "lat": 12.8417486,
+      "lon": 77.6443065
+    },
+    {
+      "frame_id": "frame_0056.jpg",
+      "lat": 12.841753,
+      "lon": 77.6443048
+    },
+    {
+      "frame_id": "frame_0057.jpg",
+      "lat": 12.841753,
+      "lon": 77.6443048
+    },
+    {
+      "frame_id": "frame_0058.jpg",
+      "lat": 12.8417647,
+      "lon": 77.6443017
+    },
+    {
+      "frame_id": "frame_0059.jpg",
+      "lat": 12.8417657,
+      "lon": 77.6442924
+    },
+    {
+      "frame_id": "frame_0060.jpg",
+      "lat": 12.841739,
+      "lon": 77.6442447
+    },
+    {
+      "frame_id": "frame_0061.jpg",
+      "lat": 12.8417298,
+      "lon": 77.6442394
+    },
+    {
+      "frame_id": "frame_0062.jpg",
+      "lat": 12.8417213,
+      "lon": 77.6442276
+    },
+    {
+      "frame_id": "frame_0063.jpg",
+      "lat": 12.8417144,
+      "lon": 77.6442261
+    },
+    {
+      "frame_id": "frame_0064.jpg",
+      "lat": 12.8417105,
+      "lon": 77.6442175
+    },
+    {
+      "frame_id": "frame_0065.jpg",
+      "lat": 12.841703,
+      "lon": 77.6442169
+    },
+    {
+      "frame_id": "frame_0066.jpg",
+      "lat": 12.8416962,
+      "lon": 77.6442187
+    },
+    {
+      "frame_id": "frame_0067.jpg",
+      "lat": 12.84168,
+      "lon": 77.6441358
+    },
+    {
+      "frame_id": "frame_0068.jpg",
+      "lat": 12.84168,
+      "lon": 77.6441358
+    },
+    {
+      "frame_id": "frame_0069.jpg",
+      "lat": 12.8416715,
+      "lon": 77.6441107
+    },
+    {
+      "frame_id": "frame_0070.jpg",
+      "lat": 12.8416513,
+      "lon": 77.6440888
+    },
+    {
+      "frame_id": "frame_0071.jpg",
+      "lat": 12.8416394,
+      "lon": 77.6440797
+    },
+    {
+      "frame_id": "frame_0072.jpg",
+      "lat": 12.8416167,
+      "lon": 77.6440697
+    },
+    {
+      "frame_id": "frame_0073.jpg",
+      "lat": 12.8416133,
+      "lon": 77.644064
+    },
+    {
+      "frame_id": "frame_0074.jpg",
+      "lat": 12.8416107,
+      "lon": 77.6440539
+    },
+    {
+      "frame_id": "frame_0075.jpg",
+      "lat": 12.8415955,
+      "lon": 77.6440483
+    },
+    {
+      "frame_id": "frame_0076.jpg",
+      "lat": 12.841581,
+      "lon": 77.6440447
+    },
+    {
+      "frame_id": "frame_0077.jpg",
+      "lat": 12.8415727,
+      "lon": 77.6440332
+    },
+    {
+      "frame_id": "frame_0078.jpg",
+      "lat": 12.8415727,
+      "lon": 77.6440332
+    },
+    {
+      "frame_id": "frame_0079.jpg",
+      "lat": 12.841572,
+      "lon": 77.6440159
+    },
+    {
+      "frame_id": "frame_0080.jpg",
+      "lat": 12.841572,
+      "lon": 77.6440159
+    },
+    {
+      "frame_id": "frame_0081.jpg",
+      "lat": 12.8415693,
+      "lon": 77.6439998
+    },
+    {
+      "frame_id": "frame_0082.jpg",
+      "lat": 12.8415435,
+      "lon": 77.6439973
+    },
+    {
+      "frame_id": "frame_0083.jpg",
+      "lat": 12.8415435,
+      "lon": 77.6439973
+    },
+    {
+      "frame_id": "frame_0084.jpg",
+      "lat": 12.8415343,
+      "lon": 77.6439946
+    },
+    {
+      "frame_id": "frame_0085.jpg",
+      "lat": 12.8415158,
+      "lon": 77.6439879
+    },
+    {
+      "frame_id": "frame_0086.jpg",
+      "lat": 12.841497,
+      "lon": 77.6439795
+    },
+    {
+      "frame_id": "frame_0087.jpg",
+      "lat": 12.841497,
+      "lon": 77.6439795
+    },
+    {
+      "frame_id": "frame_0088.jpg",
+      "lat": 12.8414855,
+      "lon": 77.6439689
+    },
+    {
+      "frame_id": "frame_0089.jpg",
+      "lat": 12.8414806,
+      "lon": 77.6439742
+    },
+    {
+      "frame_id": "frame_0090.jpg",
+      "lat": 12.8414736,
+      "lon": 77.6439761
+    },
+    {
+      "frame_id": "frame_0091.jpg",
+      "lat": 12.8414625,
+      "lon": 77.6439709
+    },
+    {
+      "frame_id": "frame_0092.jpg",
+      "lat": 12.8414579,
+      "lon": 77.6439853
+    },
+    {
+      "frame_id": "frame_0093.jpg",
+      "lat": 12.8414427,
+      "lon": 77.6439853
+    },
+    {
+      "frame_id": "frame_0094.jpg",
+      "lat": 12.8414427,
+      "lon": 77.6439853
+    },
+    {
+      "frame_id": "frame_0095.jpg",
+      "lat": 12.8414428,
+      "lon": 77.6439864
+    },
+    {
+      "frame_id": "frame_0096.jpg",
+      "lat": 12.8414286,
+      "lon": 77.643986
+    },
+    {
+      "frame_id": "frame_0097.jpg",
+      "lat": 12.8414206,
+      "lon": 77.6439912
+    },
+    {
+      "frame_id": "frame_0098.jpg",
+      "lat": 12.8414377,
+      "lon": 77.6439944
+    },
+    {
+      "frame_id": "frame_0099.jpg",
+      "lat": 12.8414377,
+      "lon": 77.6439944
+    },
+    {
+      "frame_id": "frame_0100.jpg",
+      "lat": 12.8414393,
+      "lon": 77.6439973
+    },
+    {
+      "frame_id": "frame_0101.jpg",
+      "lat": 12.8414393,
+      "lon": 77.6439973
+    },
+    {
+      "frame_id": "frame_0102.jpg",
+      "lat": 12.8414393,
+      "lon": 77.6439973
+    }
+  ],
+  "detections": [
+    {
+      "frame_id": "frame_0006.jpg",
+      "timestamp": "00:06",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417583,
+        "lon": 77.6449767,
+        "alt": 874.0999755859375,
+        "heading": 0.0,
+        "accuracy": 3.5
+      },
+      "potholes": [
+        {
+          "id": "frame_0006.jpg-0",
+          "bbox": [
+            539.9,
+            331.7,
+            1079.6,
+            541.5
+          ],
+          "cx": 809,
+          "cy": 436,
+          "r": 289,
+          "conf": 0.4821,
+          "severity": "deep",
+          "score": 0.4973,
+          "size_ratio": 0.0665,
+          "darkness": 0.2296
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0006.jpg"
+    },
+    {
+      "frame_id": "frame_0007.jpg",
+      "timestamp": "00:07",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417583,
+        "lon": 77.6449767,
+        "alt": 874.0999755859375,
+        "heading": 0.0,
+        "accuracy": 3.5
+      },
+      "potholes": [
+        {
+          "id": "frame_0007.jpg-0",
+          "bbox": [
+            763.2,
+            657.3,
+            951.0,
+            732.2
+          ],
+          "cx": 856,
+          "cy": 694,
+          "r": 100,
+          "conf": 0.3844,
+          "severity": "shallow",
+          "score": 0.3086,
+          "size_ratio": 0.0075,
+          "darkness": 0.4177
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0007.jpg"
+    },
+    {
+      "frame_id": "frame_0008.jpg",
+      "timestamp": "00:08",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417583,
+        "lon": 77.6449767,
+        "alt": 874.0999755859375,
+        "heading": 0.0,
+        "accuracy": 3.5
+      },
+      "potholes": [
+        {
+          "id": "frame_0008.jpg-0",
+          "bbox": [
+            483.6,
+            335.1,
+            1031.8,
+            510.4
+          ],
+          "cx": 757,
+          "cy": 422,
+          "r": 287,
+          "conf": 0.4542,
+          "severity": "deep",
+          "score": 0.4944,
+          "size_ratio": 0.0567,
+          "darkness": 0.3096
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0008.jpg"
+    },
+    {
+      "frame_id": "frame_0009.jpg",
+      "timestamp": "00:09",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417583,
+        "lon": 77.6449767,
+        "alt": 874.0999755859375,
+        "heading": 0.0,
+        "accuracy": 3.5
+      },
+      "potholes": [
+        {
+          "id": "frame_0009.jpg-0",
+          "bbox": [
+            337.8,
+            1016.3,
+            635.6,
+            1163.6
+          ],
+          "cx": 486,
+          "cy": 1089,
+          "r": 165,
+          "conf": 0.4175,
+          "severity": "deep",
+          "score": 0.4144,
+          "size_ratio": 0.02,
+          "darkness": 0.4866
+        },
+        {
+          "id": "frame_0009.jpg-1",
+          "bbox": [
+            856.3,
+            884.7,
+            1071.1,
+            990.8
+          ],
+          "cx": 963,
+          "cy": 937,
+          "r": 119,
+          "conf": 0.4059,
+          "severity": "deep",
+          "score": 0.4774,
+          "size_ratio": 0.0111,
+          "darkness": 0.8176
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0009.jpg"
+    },
+    {
+      "frame_id": "frame_0012.jpg",
+      "timestamp": "00:12",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417533,
+        "lon": 77.644895,
+        "alt": 874.0999755859375,
+        "heading": 238.0,
+        "accuracy": 3.3499999046325684
+      },
+      "potholes": [
+        {
+          "id": "frame_0012.jpg-0",
+          "bbox": [
+            151.7,
+            1299.5,
+            267.8,
+            1399.0
+          ],
+          "cx": 209,
+          "cy": 1349,
+          "r": 76,
+          "conf": 0.4854,
+          "severity": "shallow",
+          "score": 0.2874,
+          "size_ratio": 0.0047,
+          "darkness": 0.4031
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0012.jpg"
+    },
+    {
+      "frame_id": "frame_0020.jpg",
+      "timestamp": "00:20",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.84175,
+        "lon": 77.6449589,
+        "alt": 874.0999755859375,
+        "heading": 262.7264404296875,
+        "accuracy": 7.644999980926514
+      },
+      "potholes": [
+        {
+          "id": "frame_0020.jpg-0",
+          "bbox": [
+            221.2,
+            419.5,
+            445.5,
+            563.5
+          ],
+          "cx": 333,
+          "cy": 491,
+          "r": 133,
+          "conf": 0.3869,
+          "severity": "deep",
+          "score": 0.3505,
+          "size_ratio": 0.0186,
+          "darkness": 0.3334
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0020.jpg"
+    },
+    {
+      "frame_id": "frame_0024.jpg",
+      "timestamp": "00:24",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417043,
+        "lon": 77.6447341,
+        "alt": 874.0999755859375,
+        "heading": 93.37773132324219,
+        "accuracy": 4.53000020980835
+      },
+      "potholes": [
+        {
+          "id": "frame_0024.jpg-0",
+          "bbox": [
+            250.9,
+            635.4,
+            534.6,
+            842.8
+          ],
+          "cx": 392,
+          "cy": 738,
+          "r": 175,
+          "conf": 0.7226,
+          "severity": "deep",
+          "score": 0.5115,
+          "size_ratio": 0.031,
+          "darkness": 0.5354
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0024.jpg"
+    },
+    {
+      "frame_id": "frame_0028.jpg",
+      "timestamp": "00:28",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417043,
+        "lon": 77.6447341,
+        "alt": 874.0999755859375,
+        "heading": 93.37773132324219,
+        "accuracy": 4.53000020980835
+      },
+      "potholes": [
+        {
+          "id": "frame_0028.jpg-0",
+          "bbox": [
+            120.4,
+            550.0,
+            353.1,
+            743.3
+          ],
+          "cx": 236,
+          "cy": 646,
+          "r": 151,
+          "conf": 0.6071,
+          "severity": "deep",
+          "score": 0.4317,
+          "size_ratio": 0.0245,
+          "darkness": 0.4201
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0028.jpg"
+    },
+    {
+      "frame_id": "frame_0041.jpg",
+      "timestamp": "00:41",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8416913,
+        "lon": 77.6444903,
+        "alt": 874.0999755859375,
+        "heading": 269.640380859375,
+        "accuracy": 3.7720000743865967
+      },
+      "potholes": [
+        {
+          "id": "frame_0041.jpg-0",
+          "bbox": [
+            2.1,
+            897.0,
+            249.2,
+            988.3
+          ],
+          "cx": 125,
+          "cy": 942,
+          "r": 130,
+          "conf": 0.3944,
+          "severity": "deep",
+          "score": 0.4326,
+          "size_ratio": 0.011,
+          "darkness": 0.6957
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0041.jpg"
+    },
+    {
+      "frame_id": "frame_0061.jpg",
+      "timestamp": "01:01",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8417298,
+        "lon": 77.6442394,
+        "alt": 869.3999633789062,
+        "heading": 172.2928466796875,
+        "accuracy": 3.878999948501587
+      },
+      "potholes": [
+        {
+          "id": "frame_0061.jpg-0",
+          "bbox": [
+            297.8,
+            4.1,
+            1068.5,
+            463.0
+          ],
+          "cx": 682,
+          "cy": 233,
+          "r": 447,
+          "conf": 0.3533,
+          "severity": "deep",
+          "score": 0.5853,
+          "size_ratio": 0.2222,
+          "darkness": 0.0
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0061.jpg"
+    },
+    {
+      "frame_id": "frame_0072.jpg",
+      "timestamp": "01:12",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8416167,
+        "lon": 77.6440697,
+        "alt": 869.3999633789062,
+        "heading": 222.3577880859375,
+        "accuracy": 3.1440000534057617
+      },
+      "potholes": [
+        {
+          "id": "frame_0072.jpg-0",
+          "bbox": [
+            0.0,
+            1161.7,
+            1071.7,
+            1920.0
+          ],
+          "cx": 535,
+          "cy": 1540,
+          "r": 655,
+          "conf": 0.5144,
+          "severity": "severe",
+          "score": 0.7251,
+          "size_ratio": 0.2971,
+          "darkness": 0.3532
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0072.jpg"
+    },
+    {
+      "frame_id": "frame_0078.jpg",
+      "timestamp": "01:18",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8415727,
+        "lon": 77.6440332,
+        "alt": 869.3999633789062,
+        "heading": 277.65081787109375,
+        "accuracy": 3.486999988555908
+      },
+      "potholes": [
+        {
+          "id": "frame_0078.jpg-0",
+          "bbox": [
+            0.0,
+            1060.9,
+            1080.0,
+            1917.4
+          ],
+          "cx": 540,
+          "cy": 1488,
+          "r": 689,
+          "conf": 0.4504,
+          "severity": "deep",
+          "score": 0.595,
+          "size_ratio": 0.3477,
+          "darkness": 0.0
+        },
+        {
+          "id": "frame_0078.jpg-1",
+          "bbox": [
+            7.7,
+            555.6,
+            360.3,
+            802.7
+          ],
+          "cx": 183,
+          "cy": 678,
+          "r": 214,
+          "conf": 0.4359,
+          "severity": "deep",
+          "score": 0.5838,
+          "size_ratio": 0.0469,
+          "darkness": 0.6584
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0078.jpg"
+    },
+    {
+      "frame_id": "frame_0079.jpg",
+      "timestamp": "01:19",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.841572,
+        "lon": 77.6440159,
+        "alt": 869.3999633789062,
+        "heading": 301.3415222167969,
+        "accuracy": 3.6449999809265137
+      },
+      "potholes": [
+        {
+          "id": "frame_0079.jpg-0",
+          "bbox": [
+            0.6,
+            1264.4,
+            1080.0,
+            1905.3
+          ],
+          "cx": 540,
+          "cy": 1584,
+          "r": 627,
+          "conf": 0.6002,
+          "severity": "severe",
+          "score": 0.7518,
+          "size_ratio": 0.2468,
+          "darkness": 0.405
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0079.jpg"
+    },
+    {
+      "frame_id": "frame_0080.jpg",
+      "timestamp": "01:20",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.841572,
+        "lon": 77.6440159,
+        "alt": 869.3999633789062,
+        "heading": 301.3415222167969,
+        "accuracy": 3.6449999809265137
+      },
+      "potholes": [
+        {
+          "id": "frame_0080.jpg-0",
+          "bbox": [
+            0.0,
+            664.7,
+            262.4,
+            783.0
+          ],
+          "cx": 131,
+          "cy": 723,
+          "r": 143,
+          "conf": 0.371,
+          "severity": "deep",
+          "score": 0.3737,
+          "size_ratio": 0.0164,
+          "darkness": 0.4379
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0080.jpg"
+    },
+    {
+      "frame_id": "frame_0082.jpg",
+      "timestamp": "01:22",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8415435,
+        "lon": 77.6439973,
+        "alt": 869.3999633789062,
+        "heading": 275.4855651855469,
+        "accuracy": 4.0980000495910645
+      },
+      "potholes": [
+        {
+          "id": "frame_0082.jpg-0",
+          "bbox": [
+            33.3,
+            276.8,
+            1080.0,
+            1519.0
+          ],
+          "cx": 556,
+          "cy": 897,
+          "r": 811,
+          "conf": 0.5321,
+          "severity": "severe",
+          "score": 0.6082,
+          "size_ratio": 0.6432,
+          "darkness": 0.0144
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0082.jpg"
+    },
+    {
+      "frame_id": "frame_0083.jpg",
+      "timestamp": "01:23",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8415435,
+        "lon": 77.6439973,
+        "alt": 869.3999633789062,
+        "heading": 275.4855651855469,
+        "accuracy": 4.0980000495910645
+      },
+      "potholes": [
+        {
+          "id": "frame_0083.jpg-0",
+          "bbox": [
+            77.5,
+            149.3,
+            1071.8,
+            1165.9
+          ],
+          "cx": 574,
+          "cy": 657,
+          "r": 710,
+          "conf": 0.625,
+          "severity": "severe",
+          "score": 0.6125,
+          "size_ratio": 0.5488,
+          "darkness": 0.0
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0083.jpg"
+    },
+    {
+      "frame_id": "frame_0084.jpg",
+      "timestamp": "01:24",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8415343,
+        "lon": 77.6439946,
+        "alt": 869.3999633789062,
+        "heading": 261.2484130859375,
+        "accuracy": 3.9509999752044678
+      },
+      "potholes": [
+        {
+          "id": "frame_0084.jpg-0",
+          "bbox": [
+            77.5,
+            149.3,
+            1071.8,
+            1165.9
+          ],
+          "cx": 574,
+          "cy": 657,
+          "r": 710,
+          "conf": 0.625,
+          "severity": "severe",
+          "score": 0.6125,
+          "size_ratio": 0.5488,
+          "darkness": 0.0
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0084.jpg"
+    },
+    {
+      "frame_id": "frame_0086.jpg",
+      "timestamp": "01:26",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.841497,
+        "lon": 77.6439795,
+        "alt": 869.3999633789062,
+        "heading": 219.43397521972656,
+        "accuracy": 3.2920000553131104
+      },
+      "potholes": [
+        {
+          "id": "frame_0086.jpg-0",
+          "bbox": [
+            752.3,
+            1256.7,
+            1022.8,
+            1358.2
+          ],
+          "cx": 887,
+          "cy": 1307,
+          "r": 144,
+          "conf": 0.4976,
+          "severity": "shallow",
+          "score": 0.2944,
+          "size_ratio": 0.0113,
+          "darkness": 0.2643
+        },
+        {
+          "id": "frame_0086.jpg-1",
+          "bbox": [
+            4.0,
+            335.4,
+            427.1,
+            529.2
+          ],
+          "cx": 215,
+          "cy": 432,
+          "r": 233,
+          "conf": 0.3678,
+          "severity": "deep",
+          "score": 0.4121,
+          "size_ratio": 0.0482,
+          "darkness": 0.175
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0086.jpg"
+    },
+    {
+      "frame_id": "frame_0091.jpg",
+      "timestamp": "01:31",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414625,
+        "lon": 77.6439709,
+        "alt": 869.3999633789062,
+        "heading": 208.8928680419922,
+        "accuracy": 3.2149999141693115
+      },
+      "potholes": [
+        {
+          "id": "frame_0091.jpg-0",
+          "bbox": [
+            797.2,
+            1743.0,
+            919.8,
+            1853.7
+          ],
+          "cx": 858,
+          "cy": 1798,
+          "r": 82,
+          "conf": 0.4243,
+          "severity": "deep",
+          "score": 0.4453,
+          "size_ratio": 0.0043,
+          "darkness": 0.8845
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0091.jpg"
+    },
+    {
+      "frame_id": "frame_0095.jpg",
+      "timestamp": "01:35",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414428,
+        "lon": 77.6439864,
+        "alt": 869.3999633789062,
+        "heading": 193.65660095214844,
+        "accuracy": 3.0
+      },
+      "potholes": [
+        {
+          "id": "frame_0095.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0095.jpg"
+    },
+    {
+      "frame_id": "frame_0096.jpg",
+      "timestamp": "01:36",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414286,
+        "lon": 77.643986,
+        "alt": 869.3999633789062,
+        "heading": 146.8818359375,
+        "accuracy": 3.0
+      },
+      "potholes": [
+        {
+          "id": "frame_0096.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0096.jpg"
+    },
+    {
+      "frame_id": "frame_0097.jpg",
+      "timestamp": "01:37",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414206,
+        "lon": 77.6439912,
+        "alt": 869.3999633789062,
+        "heading": 147.01136779785156,
+        "accuracy": 3.0759999752044678
+      },
+      "potholes": [
+        {
+          "id": "frame_0097.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0097.jpg"
+    },
+    {
+      "frame_id": "frame_0098.jpg",
+      "timestamp": "01:38",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414377,
+        "lon": 77.6439944,
+        "alt": 869.3999633789062,
+        "heading": 151.71253967285156,
+        "accuracy": 3.061000108718872
+      },
+      "potholes": [
+        {
+          "id": "frame_0098.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0098.jpg"
+    },
+    {
+      "frame_id": "frame_0099.jpg",
+      "timestamp": "01:39",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414377,
+        "lon": 77.6439944,
+        "alt": 869.3999633789062,
+        "heading": 151.71253967285156,
+        "accuracy": 3.061000108718872
+      },
+      "potholes": [
+        {
+          "id": "frame_0099.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0099.jpg"
+    },
+    {
+      "frame_id": "frame_0100.jpg",
+      "timestamp": "01:40",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414393,
+        "lon": 77.6439973,
+        "alt": 869.3999633789062,
+        "heading": 112.62840270996094,
+        "accuracy": 3.0209999084472656
+      },
+      "potholes": [
+        {
+          "id": "frame_0100.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0100.jpg"
+    },
+    {
+      "frame_id": "frame_0101.jpg",
+      "timestamp": "01:41",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414393,
+        "lon": 77.6439973,
+        "alt": 869.3999633789062,
+        "heading": 112.62840270996094,
+        "accuracy": 3.0209999084472656
+      },
+      "potholes": [
+        {
+          "id": "frame_0101.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0101.jpg"
+    },
+    {
+      "frame_id": "frame_0102.jpg",
+      "timestamp": "01:42",
+      "img_w": 1080,
+      "img_h": 1920,
+      "gps": {
+        "lat": 12.8414393,
+        "lon": 77.6439973,
+        "alt": 869.3999633789062,
+        "heading": 112.62840270996094,
+        "accuracy": 3.0209999084472656
+      },
+      "potholes": [
+        {
+          "id": "frame_0102.jpg-0",
+          "bbox": [
+            427.2,
+            241.4,
+            733.1,
+            352.0
+          ],
+          "cx": 580,
+          "cy": 296,
+          "r": 162,
+          "conf": 0.5032,
+          "severity": "shallow",
+          "score": 0.3085,
+          "size_ratio": 0.0208,
+          "darkness": 0.1479
+        }
+      ],
+      "annotated": "sessions/FL-20260827-863/annotated/frame_0102.jpg"
+    }
+  ]
+}
