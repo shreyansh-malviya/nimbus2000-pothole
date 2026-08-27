@@ -1,0 +1,9 @@
+{
+  "mAP50": 0.627,
+  "mAP50_95": 0.3138,
+  "precision": 0.6628,
+  "recall": 0.5627,
+  "imgsz": 640,
+  "epochs": 18,
+  "model": "yolov8n.pt"
+}
