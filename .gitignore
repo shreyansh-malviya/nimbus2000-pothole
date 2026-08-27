@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+
+# ML artifacts
+training/runs/
+training/*.cache
+dataset/downloads/
+dataset/pothole/
+dataset/raw/
+*.pt
+!models/best.pt
+datasets/
+
+# Node / dashboard
+node_modules/
+dashboard/dist/
+dashboard/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large source data (kept locally, not committed)
+Data/extracted/
+Data/*.zip
+
+# Env
+.env
+
+# Playwright MCP scratch
+.playwright-mcp/
+/dash-*.png
+
+# Generated inference outputs (regenerate via inference/detect.py)
+dashboard/public/frames/
+dashboard/public/data/detections.json
+
+# Stray ultralytics default run dir
+/runs/

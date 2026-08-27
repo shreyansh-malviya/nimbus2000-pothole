@@ -1,0 +1,7 @@
+# Nimbus2000 Pothole Detector — Python dependencies
+ultralytics==8.4.41
+opencv-python>=4.9
+numpy>=1.26
+pillow>=10.0
+pyyaml>=6.0
+requests>=2.31
