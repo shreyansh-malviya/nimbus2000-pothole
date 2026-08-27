@@ -63,6 +63,7 @@ def analyze_session(
     annotated_out_dir: Path | None = None,
     raw_out_dir: Path | None = None,
     want_base64: bool = False,
+    limit: int = 0,
     progress=None,
 ) -> dict:
     """Analyze every frame in `frames_dir`. Returns a detections dict.
@@ -86,6 +87,8 @@ def analyze_session(
     frame_files = sorted(frames_dir.glob("frame_*.jpg"))
     if not frame_files:
         frame_files = sorted(p for p in frames_dir.glob("*.jpg"))
+    if limit > 0:
+        frame_files = frame_files[:limit]
 
     detections, path_points = [], []
     severity_counts = {k: 0 for k in SEVERITY_LEVELS}

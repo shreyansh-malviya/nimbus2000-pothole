@@ -31,6 +31,10 @@ def main() -> None:
     ap.add_argument("--model", default=str(BEST_MODEL))
     ap.add_argument("--enhance", action="store_true")
     ap.add_argument("--augment", action="store_true")
+    ap.add_argument("--limit", type=int, default=0,
+                    help="frames per session (0 = all); for quick validation")
+    ap.add_argument("--session", default="",
+                    help="bake only this session id (default: all)")
     args = ap.parse_args()
 
     from ultralytics import YOLO
@@ -45,6 +49,11 @@ def main() -> None:
 
     model = YOLO(str(model_path))
     metrics = load_metrics(MODELS_DIR)
+
+    if args.session:
+        sessions = [s for s in sessions if s[0] == args.session]
+        if not sessions:
+            raise SystemExit(f"Session '{args.session}' not found.")
 
     index = []
     for sid, frames_dir, manifest_path in sessions:
@@ -63,6 +72,7 @@ def main() -> None:
             annotated_out_dir=out_dir / "annotated",
             raw_out_dir=out_dir / "raw",
             want_base64=False,
+            limit=args.limit,
             progress=prog,
         )
         # Rewrite annotated/raw as session-relative URLs the frontend can load.

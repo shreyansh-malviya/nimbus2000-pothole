@@ -41,6 +41,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Single source of truth for the weights path (env override for deploys).
+MODEL_PATH = Path(os.environ.get("MODEL_PATH", str(BEST_MODEL)))
+
 # Lazy-loaded singleton model (heavy import; load once).
 _MODEL = None
 _METRICS = None
@@ -50,10 +53,9 @@ def get_model():
     global _MODEL, _METRICS
     if _MODEL is None:
         from ultralytics import YOLO
-        model_path = Path(os.environ.get("MODEL_PATH", str(BEST_MODEL)))
-        if not model_path.exists():
-            raise HTTPException(503, f"Model weights not found at {model_path}. Train first.")
-        _MODEL = YOLO(str(model_path))
+        if not MODEL_PATH.exists():
+            raise HTTPException(503, f"Model weights not found at {MODEL_PATH}. Train first.")
+        _MODEL = YOLO(str(MODEL_PATH))
         _METRICS = load_metrics(MODELS_DIR)
     return _MODEL, _METRICS
 
@@ -66,13 +68,13 @@ def root():
 
 @app.get("/health")
 def health():
-    return {"status": "ok", "model_present": BEST_MODEL.exists()}
+    return {"status": "ok", "model_present": MODEL_PATH.exists(), "model_path": str(MODEL_PATH)}
 
 
 @app.get("/model")
 def model_info():
     _, metrics = get_model()
-    return {"weights": BEST_MODEL.name, "metrics": metrics}
+    return {"weights": MODEL_PATH.name, "metrics": metrics}
 
 
 def _find_frames_dir(root: Path) -> Path | None:
@@ -129,7 +131,7 @@ async def analyze(
             frames_dir, manifest_path, model,
             conf=conf, iou=0.5, imgsz=imgsz,
             enhance=enhance, augment=augment,
-            metrics=metrics, model_name=BEST_MODEL.name,
+            metrics=metrics, model_name=MODEL_PATH.name,
             annotated_out_dir=None, raw_out_dir=None,
             want_base64=True,
         )
