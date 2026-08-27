@@ -71,6 +71,46 @@ manual labelling, no desktop tooling in the field.
 > Each provided flight (`FL-20260827-665`, `FL-20260827-863`) is exactly one such
 > ZIP produced by this app.
 
+### 📦 Flight ZIP format (the pipeline's input)
+
+Every flight is a single `.zip` containing the sampled JPG frames **and** one
+`manifest.json` with per-frame GPS telemetry:
+
+```
+FL-20260827-665_frames.zip
+├── frame_0000.jpg
+├── frame_0001.jpg
+├── …
+├── frame_0169.jpg
+└── manifest.json
+```
+
+`manifest.json` — session metadata plus one entry per frame:
+
+```jsonc
+{
+  "sessionId": "FL-20260827-665",   // flight/session id
+  "intervalSec": 1,                  // seconds between sampled frames
+  "frames": [
+    {
+      "frameId": "frame_0000.jpg",   // matches a JPG in the zip
+      "videoTimestamp": "00:00",     // time in the source video
+      "offsetMs": 0,                 // ms from start
+      "latitude": 12.8404965,        // GPS
+      "longitude": 77.6634339,
+      "altitudeM": 866.6,            // altitude (m)
+      "accuracyM": 2.96,             // GPS accuracy (m)
+      "headingDeg": 0                // compass heading
+    }
+    // … one object per frame
+  ]
+}
+```
+
+The backend finds `manifest.json` anywhere in the archive, matches each
+`frameId` to its image, runs detection, and joins the GPS to place every pothole
+on the map. Any ZIP following this shape works with **"Analyze Footage"**.
+
 ---
 
 ## 2. The AI — Models & Processing 🧠
