@@ -11,6 +11,22 @@ severity-graded pothole intelligence.**
 ![mAP50](https://img.shields.io/badge/mAP%4050-0.63-ff7a1a)
 ![hosting](https://img.shields.io/badge/hosting-Vercel%20%2B%20Render%20(free)-4ccf6a)
 
+<br/>
+
+<img src="assets/dashboard-1.jpeg" width="90%" alt="Nimbus2000 analytics dashboard — live map, severity pie, annotated frames"/>
+
+<br/><br/>
+
+<b>📱 FIELDLOG — the custom drone data-capture app</b>
+
+<table>
+  <tr>
+    <td><img src="assets/app-1.jpeg" width="230" alt="FieldLog — capture & session history"/></td>
+    <td><img src="assets/app-2.jpeg" width="230" alt="FieldLog — GPS trail capture"/></td>
+    <td><img src="assets/app-3.jpeg" width="230" alt="FieldLog — export flight ZIP"/></td>
+  </tr>
+</table>
+
 </div>
 
 ---
@@ -108,6 +124,10 @@ edges.
   **LIVE** session.
 - **"Analyze Footage"** — drop a new ZIP; it's sent to the backend and rendered
   live without a page reload.
+
+<p align="center">
+  <img src="assets/dashboard-2.jpeg" width="90%" alt="Nimbus2000 dashboard — annotated frame gallery and detection detail"/>
+</p>
 
 ---
 

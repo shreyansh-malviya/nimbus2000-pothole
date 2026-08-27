@@ -43,3 +43,6 @@ Data/*.zip
 .DS_Store
 Thumbs.db
 
+
+# Original demo image drop (clean copies live in assets/)
+demo images/
