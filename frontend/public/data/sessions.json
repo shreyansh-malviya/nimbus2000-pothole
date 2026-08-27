@@ -1,7 +1,7 @@
 {
   "drone": "Nimbus2000",
   "model": {
-    "weights": "best.pt",
+    "weights": "best.onnx",
     "metrics": {
       "mAP50": 0.0,
       "mAP50_95": 0.0,
@@ -14,11 +14,11 @@
       "session_id": "FL-20260827-665",
       "drone": "Nimbus2000",
       "frames_total": 170,
-      "potholes_total": 30,
+      "potholes_total": 22,
       "severity_counts": {
-        "shallow": 9,
-        "deep": 14,
-        "severe": 7
+        "shallow": 7,
+        "deep": 12,
+        "severe": 3
       },
       "distance_covered_m": 831.9,
       "area_bounds": {
@@ -33,9 +33,9 @@
       "session_id": "FL-20260827-863",
       "drone": "Nimbus2000",
       "frames_total": 103,
-      "potholes_total": 30,
+      "potholes_total": 32,
       "severity_counts": {
-        "shallow": 11,
+        "shallow": 13,
         "deep": 14,
         "severe": 5
       },

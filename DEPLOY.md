@@ -1,93 +1,82 @@
-# Deploying Nimbus2000 — Vercel (frontend) + Render (backend)
+# Deploying Nimbus2000 — Vercel (frontend) + Render FREE (backend)
 
 Goal: a public Vercel URL where you upload a flight **ZIP** and get pothole
-results back from the Render-hosted detection backend.
+results from a **free** Render-hosted backend — no credit card, no laptop.
 
 ```
- you ──upload ZIP──▶ Vercel (Next.js static)  ──ZIP POSTed direct──▶ Render (FastAPI + YOLOv8)
+ you ──upload ZIP──▶ Vercel (Next.js static)  ──ZIP POSTed direct──▶ Render FREE (FastAPI + ONNX)
                          ▲                                                    │
                          └──────────────  JSON + annotated frames  ◀──────────┘
 ```
 
-The browser sends the ZIP **straight to Render**, so Vercel's 4.5 MB request
-limit never applies.
+The backend runs **ONNX Runtime** (not PyTorch), so it fits Render's free
+512 MB tier. The browser sends the ZIP straight to Render, bypassing Vercel's
+4.5 MB request limit.
 
 ---
 
 ## Prerequisites
-- The trained model exists at `models/best.pt` **and is committed** (it ships to
-  Render for inference). Training writes it; then `git add -f models/best.pt`.
+- `models/best.onnx` is committed (the backend loads it). ✅ already in the repo.
 - Accounts: GitHub, [Vercel](https://vercel.com), [Render](https://render.com).
+  **No credit card needed** for either free tier.
 
 ---
 
-## Step 0 — Push the repo to GitHub
-```bash
-git remote add origin https://github.com/<you>/nimbus2000-pothole.git
-git push -u origin main        # (or master)
-```
-Confirm `models/best.pt` is in the pushed tree (it's whitelisted in .gitignore).
+## Step 1 — Backend on Render (free)
 
----
-
-## Step 1 — Backend on Render (do this first; you need its URL)
-
-**Option A — Blueprint (uses `render.yaml`, recommended)**
+**Blueprint (uses `render.yaml`)**
 1. Render dashboard → **New → Blueprint**.
-2. Connect the GitHub repo. Render reads `render.yaml` and proposes the
-   `nimbus2000-backend` web service (Python, **Standard** plan — needs ≥2 GB RAM;
-   the 512 MB free/starter tiers OOM on torch).
-3. **Apply**. First build takes ~5–10 min (CPU torch install).
-4. When live, copy the URL, e.g. `https://nimbus2000-backend.onrender.com`.
-5. Verify: open `…/health` → `{"status":"ok","model_present":true,...}`.
+2. Connect the repo `shreyansh-malviya/nimbus2000-pothole`. If it's not listed,
+   *"Configure GitHub App"* → grant access to this private repo.
+3. Render reads `render.yaml` and proposes `nimbus2000-backend` on the **Free**
+   plan. Click **Apply**. Build takes ~3–5 min (ONNX install is small).
+4. Copy the URL, e.g. `https://nimbus2000-backend.onrender.com`.
+5. Verify `…/health` → `{"status":"ok","model_present":true,...}` ✅
 
-**Option B — Manual web service**
-- New → Web Service → the repo → Runtime **Python 3**, Plan **Standard**.
-- Build command:
-  ```
-  pip install --no-cache-dir torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cpu && pip install --no-cache-dir -r backend/requirements.txt
-  ```
-- Start command: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
-- Env: `MODEL_PATH=models/best.pt`, `ALLOWED_ORIGINS=*` (tighten in Step 3).
+**Manual (if you skip the blueprint)**
+- New → Web Service → the repo → Runtime **Python 3**, Plan **Free**.
+- Build: `pip install -r backend/requirements.txt`
+- Start: `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`
+- Env: `MODEL_PATH=models/best.onnx`, `ALLOWED_ORIGINS=*`
+
+> **Free-tier cold start:** the service sleeps after ~15 min idle and takes
+> ~40 s to wake on the next request. Keep it warm with the pinger (Step 4).
 
 ---
 
-## Step 2 — Frontend on Vercel
+## Step 2 — Frontend on Vercel (free)
 1. Vercel → **Add New → Project** → import the repo.
-2. **IMPORTANT: set Root Directory = `frontend`** (Framework auto-detects Next.js).
-3. Add an Environment Variable:
-   - `NEXT_PUBLIC_API_URL` = your Render URL from Step 1 (no trailing slash).
-   - This is **build-time** — if you change it later you must **redeploy**.
-4. **Deploy**. You get `https://<your-app>.vercel.app`.
+2. **Set Root Directory = `frontend`** (Next.js auto-detected).
+3. Env var `NEXT_PUBLIC_API_URL` = your Render URL (no trailing slash).
+   *(Build-time — redeploy if you change it.)*
+4. **Deploy** → `https://<your-app>.vercel.app`.
 
 ---
 
-## Step 3 — Lock down CORS (optional but recommended)
-On Render, set env `ALLOWED_ORIGINS` = your Vercel URL
-(`https://<your-app>.vercel.app`) and redeploy. Now only your site may call the API.
+## Step 3 — Lock CORS (optional)
+Render → service → **Environment** → `ALLOWED_ORIGINS` = your Vercel URL → save.
 
 ---
 
-## Step 4 — Use it
-1. Open the Vercel URL.
-2. The header shows **backend online** once Render is awake.
-3. Click **Analyze Footage** → drop a flight ZIP (`frame_*.jpg` + `manifest.json`
-   — your `FL-*_frames.zip` files work as-is) → **Analyze Footage**.
-4. Results render live: map + severity pie + annotated frames. It also appears as
-   a **LIVE** flight tab.
+## Step 4 — Keep it awake (pinger)
+Render Free sleeps when idle. The companion repo **`nimbus2000-pinger`** is a
+GitHub Actions cron that hits `/health` every ~10 min so the backend stays warm
+during the hackathon. Set its `BACKEND_URL` secret/variable to your Render URL.
+See that repo's README.
 
 ---
 
-## Gotchas
-- **Cold start**: Render spins down on idle (free/low tiers). The first request
-  after a nap waits ~30–60 s while the service + model load — the UI shows an
-  "analyzing" state; just wait.
-- **`backend offline` in the header**: Render is asleep or `NEXT_PUBLIC_API_URL`
-  is wrong. Open `…/health` directly to wake/verify it.
-- **Big ZIPs**: fine — they go browser→Render directly. Render Standard handles
-  the provided 124–196 MB flights.
-- **Pre-baked flights on the site**: to also show the provided flights without
-  the backend, run `python inference/bake.py --enhance`, commit
-  `frontend/public/sessions/**` + `frontend/public/data/sessions.json`, and
-  redeploy. (Without this, the site opens on the upload landing — still fully
-  functional.)
+## Step 5 — Use it
+Open the Vercel URL → **backend online** → the two flights load with real
+potholes → **Analyze Footage** → drop any `FL-*_frames.zip` → live results. 🎉
+
+---
+
+## Updating the model
+`models/best.onnx` is exported from the trained model:
+```bash
+python -c "from ultralytics import YOLO; YOLO('models/best.pt').export(format='onnx', imgsz=640, opset=12, simplify=True)"
+python inference/bake.py --model models/best.onnx --conf 0.35 --enhance   # refresh static flights
+git add models/best.onnx frontend/public && git commit -m "update model" && git push
+```
+Both Render and Vercel **auto-redeploy on push to `main`**.

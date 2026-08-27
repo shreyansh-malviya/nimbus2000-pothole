@@ -18,9 +18,10 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
 from nimbus.config import (  # noqa: E402
-    BEST_MODEL, MODELS_DIR, SESSIONS_OUT, SESSIONS_INDEX, list_sessions,
+    ONNX_MODEL, MODELS_DIR, SESSIONS_OUT, SESSIONS_INDEX, list_sessions,
 )
 from nimbus.analyze import analyze_session, load_metrics  # noqa: E402
+from nimbus.detector import OnnxDetector  # noqa: E402
 
 
 def main() -> None:
@@ -28,26 +29,24 @@ def main() -> None:
     ap.add_argument("--conf", type=float, default=0.20)
     ap.add_argument("--iou", type=float, default=0.5)
     ap.add_argument("--imgsz", type=int, default=640)
-    ap.add_argument("--model", default=str(BEST_MODEL))
+    ap.add_argument("--model", default=str(ONNX_MODEL))
     ap.add_argument("--enhance", action="store_true")
-    ap.add_argument("--augment", action="store_true")
+    ap.add_argument("--augment", action="store_true")  # accepted, ignored by ONNX
     ap.add_argument("--limit", type=int, default=0,
                     help="frames per session (0 = all); for quick validation")
     ap.add_argument("--session", default="",
                     help="bake only this session id (default: all)")
     args = ap.parse_args()
 
-    from ultralytics import YOLO
-
     model_path = Path(args.model)
     if not model_path.exists():
-        raise SystemExit(f"Model not found: {model_path}. Train first.")
+        raise SystemExit(f"Model not found: {model_path}. Export ONNX first (see README).")
 
     sessions = list_sessions()
     if not sessions:
         raise SystemExit("No sessions found under Data/sessions/")
 
-    model = YOLO(str(model_path))
+    model = OnnxDetector(str(model_path))
     metrics = load_metrics(MODELS_DIR)
 
     if args.session:

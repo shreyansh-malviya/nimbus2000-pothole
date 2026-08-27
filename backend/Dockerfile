@@ -1,4 +1,4 @@
-# Nimbus2000 detection backend — container image (Fly.io / Railway / self-host).
+# Nimbus2000 detection backend — ONNX Runtime image (Fly.io / Railway / self-host).
 # Build context = repo root:  docker build -f backend/Dockerfile -t nimbus-backend .
 FROM python:3.10-slim
 
@@ -8,16 +8,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 COPY backend/requirements.txt backend/requirements.txt
-# CPU-only torch first (avoids the multi-GB CUDA wheels), then the rest.
-RUN pip install --no-cache-dir torch==2.8.0 torchvision==0.23.0 \
-        --index-url https://download.pytorch.org/whl/cpu \
- && pip install --no-cache-dir -r backend/requirements.txt
+RUN pip install --no-cache-dir -r backend/requirements.txt
 
-# App code + shared engine + model weights
+# App code + shared engine + ONNX model
 COPY nimbus/ nimbus/
 COPY backend/ backend/
-COPY models/ models/
+COPY models/best.onnx models/best.onnx
 
-ENV MODEL_PATH=models/best.pt ALLOWED_ORIGINS=*
+ENV MODEL_PATH=models/best.onnx ALLOWED_ORIGINS=*
 EXPOSE 8000
 CMD ["uvicorn", "backend.app:app", "--host", "0.0.0.0", "--port", "8000"]

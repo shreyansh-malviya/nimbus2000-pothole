@@ -1,19 +1,14 @@
-# One-click Render deploy for the Nimbus2000 detection backend.
+# One-click Render deploy for the Nimbus2000 detection backend (ONNX Runtime).
 # The frontend (Vercel) uploads flight ZIPs directly to this service.
 services:
   - type: web
     name: nimbus2000-backend
     runtime: python
-    # torch + ultralytics + image processing peaks ~1.5GB — use a >=2GB plan.
-    # (Render "Standard". The 512MB free/starter tiers will OOM on inference.)
-    plan: standard
+    # ONNX Runtime keeps memory ~350MB, so the FREE tier works (no card needed).
+    # It sleeps after ~15min idle and cold-starts (~40s) on the next request.
+    plan: free
     rootDir: .
-    # Install CPU-only torch/torchvision FIRST (the default PyPI wheels on Linux
-    # pull the multi-GB CUDA build and blow Render's disk/time limits).
-    buildCommand: >-
-      pip install --no-cache-dir torch==2.8.0 torchvision==0.23.0
-      --index-url https://download.pytorch.org/whl/cpu &&
-      pip install --no-cache-dir -r backend/requirements.txt
+    buildCommand: pip install -r backend/requirements.txt
     startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: PYTHON_VERSION
@@ -21,4 +16,4 @@ services:
       - key: ALLOWED_ORIGINS
         value: "*"           # tighten to your Vercel URL in production
       - key: MODEL_PATH
-        value: models/best.pt
+        value: models/best.onnx

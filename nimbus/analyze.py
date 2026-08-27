@@ -59,15 +59,15 @@ def _jpg_data_uri(img, quality=80, max_w=900):
 def analyze_session(
     frames_dir: Path,
     manifest_path: Path,
-    model,
+    detector,
     *,
     conf: float = 0.20,
     iou: float = 0.5,
     imgsz: int = 640,
     enhance: bool = True,
-    augment: bool = False,
+    augment: bool = False,  # accepted for compatibility; ONNX path ignores it
     metrics: dict | None = None,
-    model_name: str = "best.pt",
+    model_name: str = "best.onnx",
     annotated_out_dir: Path | None = None,
     raw_out_dir: Path | None = None,
     want_base64: bool = False,
@@ -115,13 +115,12 @@ def analyze_session(
         if t:
             path_points.append({"frame_id": frame_id, "lat": t.latitude, "lon": t.longitude})
 
-        res = model.predict(img, conf=conf, iou=iou, imgsz=imgsz,
-                            augment=augment, device="cpu", verbose=False)[0]
+        boxes = detector.detect(img, conf=conf, iou=iou, imgsz=imgsz)  # (N,5) xyxy+conf
 
         potholes = []
-        for i, box in enumerate(res.boxes):
-            xyxy = box.xyxy[0].tolist()
-            c = float(box.conf[0])
+        for i, b in enumerate(boxes):
+            xyxy = [float(b[0]), float(b[1]), float(b[2]), float(b[3])]
+            c = float(b[4])
             sres = sev.classify(gray, xyxy, c, w, h)
             cx, cy, r = draw_pothole(img, xyxy, sres.level, c)
             severity_counts[sres.level] += 1

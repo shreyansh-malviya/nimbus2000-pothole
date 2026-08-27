@@ -25,8 +25,9 @@ from fastapi.responses import JSONResponse
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from nimbus.config import BEST_MODEL, MODELS_DIR, DRONE_NAME  # noqa: E402
+from nimbus.config import ONNX_MODEL, MODELS_DIR, DRONE_NAME  # noqa: E402
 from nimbus.analyze import analyze_session, load_metrics  # noqa: E402
+from nimbus.detector import OnnxDetector  # noqa: E402
 
 app = FastAPI(title="Nimbus2000 Pothole Detection API", version="1.0.0")
 
@@ -41,23 +42,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Single source of truth for the weights path (env override for deploys).
-MODEL_PATH = Path(os.environ.get("MODEL_PATH", str(BEST_MODEL)))
+# Single source of truth for the ONNX weights path (env override for deploys).
+MODEL_PATH = Path(os.environ.get("MODEL_PATH", str(ONNX_MODEL)))
 
-# Lazy-loaded singleton model (heavy import; load once).
-_MODEL = None
+# Lazy-loaded singleton detector (load once).
+_DETECTOR = None
 _METRICS = None
 
 
 def get_model():
-    global _MODEL, _METRICS
-    if _MODEL is None:
-        from ultralytics import YOLO
+    global _DETECTOR, _METRICS
+    if _DETECTOR is None:
         if not MODEL_PATH.exists():
-            raise HTTPException(503, f"Model weights not found at {MODEL_PATH}. Train first.")
-        _MODEL = YOLO(str(MODEL_PATH))
+            raise HTTPException(503, f"Model not found at {MODEL_PATH}. Export ONNX first.")
+        _DETECTOR = OnnxDetector(str(MODEL_PATH))
         _METRICS = load_metrics(MODELS_DIR)
-    return _MODEL, _METRICS
+    return _DETECTOR, _METRICS
 
 
 @app.get("/")
@@ -99,7 +99,7 @@ async def analyze(
     if not file.filename.lower().endswith(".zip"):
         raise HTTPException(400, "Please upload a .zip of the flight frames + manifest.json")
 
-    model, metrics = get_model()
+    detector, metrics = get_model()
     tmp = Path(tempfile.mkdtemp(prefix="nimbus_"))
     zip_path = tmp / "upload.zip"
     try:
@@ -128,7 +128,7 @@ async def analyze(
             raise HTTPException(422, "manifest.json not found next to the frames.")
 
         result = analyze_session(
-            frames_dir, manifest_path, model,
+            frames_dir, manifest_path, detector,
             conf=conf, iou=0.5, imgsz=imgsz,
             enhance=enhance, augment=augment,
             metrics=metrics, model_name=MODEL_PATH.name,
